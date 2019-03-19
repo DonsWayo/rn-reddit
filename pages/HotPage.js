@@ -5,7 +5,7 @@ import axios from 'axios';
 import { ListItem } from 'react-native-elements'
 
 
-export default class HomePage extends Component {
+export default class HotPage extends Component {
     static navigationOptions = {
         title: 'Reddit',
     };
@@ -34,7 +34,7 @@ export default class HomePage extends Component {
             onPress={() => {
                 /* 1. Navigate to the Details route with params */
                 this.props.navigation.navigate('Details', {
-                  permaLink: item.data.permalink,
+                    permaLink: item.data.permalink,
                 });
             }}
         />
@@ -43,11 +43,11 @@ export default class HomePage extends Component {
     render() {
         return (
             <SafeAreaView>
-            <FlatList
-                keyExtractor={this.keyExtractor}
-                data={this.state.entries}
-                renderItem={this.renderItem}
-            />
+                <FlatList
+                    keyExtractor={this.keyExtractor}
+                    data={this.state.entries}
+                    renderItem={this.renderItem}
+                />
             </SafeAreaView>
         )
     }

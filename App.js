@@ -5,12 +5,23 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 
 import  HomePage from "./pages/HomePage";
-import  ProfilePage  from "./pages/ProfilePage";
 import DetailPage from './pages/DetailPage';
+import NewScreen from "./pages/NewScreen";
+import HotPage from "./pages/HotPage";
+
+console.disableYellowBox = true;
 
 const HomeStack = createStackNavigator({
   Home: HomePage,
   Details: DetailPage,
+});
+const HotStack = createStackNavigator({
+  Hot: HotPage,
+  Details: DetailPage,
+});
+
+const NewsStack = createStackNavigator({
+  News: NewScreen,
 });
 
 HomeStack.navigationOptions = ({ navigation }) => {
@@ -32,15 +43,36 @@ const TabNavigator = createBottomTabNavigator(
     screen: HomeStack,
 
     navigationOptions: {
-      tabBarLabel:"Home Page",
+      tabBarLabel:"Top",
       tabBarIcon: ({ tintColor }) => (
-        <Icon name="home" size={30}/>
+        <Icon name="notification" size={30}/>
       )
     },
   },
+    Hot: {
+      screen: HotStack,
+
+      navigationOptions: {
+        tabBarLabel:"News",
+        tabBarIcon: ({ tintColor }) => (
+            <Icon name="heart" size={30}/>
+        )
+      },
+    },
+    News: {
+      screen: NewsStack,
+
+      navigationOptions: {
+        tabBarLabel:"News",
+        tabBarIcon: ({ tintColor }) => (
+            <Icon name="eye" size={30}/>
+        )
+      },
+    }
+
 },
 {
-  order: ['Home'],
+  order: ['Home','Hot','News'],
   tabBarOptions: {
     activeTintColor: '#ffa500',
     inactiveTintColor: 'gray',

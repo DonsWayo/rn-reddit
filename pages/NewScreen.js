@@ -5,7 +5,7 @@ import axios from 'axios';
 import { ListItem } from 'react-native-elements'
 
 
-export default class HomePage extends Component {
+export default class NewScreen extends Component {
     static navigationOptions = {
         title: 'Reddit',
     };
@@ -16,7 +16,7 @@ export default class HomePage extends Component {
 
 
     componentDidMount() {
-        axios.get('https://www.reddit.com/top.json?limit=30')
+        axios.get('https://www.reddit.com/new.json?limit=30')
             .then(res => {
                 const ent = res.data.data.children;
                 console.log(ent);
@@ -31,23 +31,17 @@ export default class HomePage extends Component {
             title={item.data.subreddit_name_prefixed}
             subtitle={item.data.title}
             leftAvatar={{ source: { uri: item.data.thumbnail } }}
-            onPress={() => {
-                /* 1. Navigate to the Details route with params */
-                this.props.navigation.navigate('Details', {
-                  permaLink: item.data.permalink,
-                });
-            }}
         />
     )
 
     render() {
         return (
             <SafeAreaView>
-            <FlatList
-                keyExtractor={this.keyExtractor}
-                data={this.state.entries}
-                renderItem={this.renderItem}
-            />
+                <FlatList
+                    keyExtractor={this.keyExtractor}
+                    data={this.state.entries}
+                    renderItem={this.renderItem}
+                />
             </SafeAreaView>
         )
     }
