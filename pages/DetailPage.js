@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { Text, FlatList, View, StyleSheet, TouchableOpacity , Linking, ScrollView , SafeAreaView} from 'react-native'
 import { ListItem, Card, Divider } from 'react-native-elements'
-import {Dimensions} from 'react-native';
-import Loader from 'react-native-easy-content-loader';
 
 
 import axios from 'axios';
+import ShimmerLoader from "../components/ui/ShimmerLoader";
 
 
-const { width, height } = Dimensions.get('screen');
 
 
 
@@ -49,7 +47,7 @@ export default class DetailPage extends Component {
             titleStyle={styles.titleView}
             title={item.data.author}
             subtitle={item.data.body}
-            
+
         />
 
     )
@@ -58,63 +56,7 @@ export default class DetailPage extends Component {
         const {isFetched} = this.state;
         if (isFetched){
             return (
-                <View>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 2, marginLeft: 15 , marginTop: 40}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 3, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 5, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 2, marginLeft: 15 , marginTop: 40}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 3, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 5, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 2, marginLeft: 15 , marginTop: 40}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 3, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 5, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 2, marginLeft: 15 , marginTop: 40}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 3, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 5, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 2, marginLeft: 15 , marginTop: 40}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 3, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 5, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 2, marginLeft: 15 , marginTop: 40}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 3, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-                    <Loader loading={true}>
-                        <View style={{ height: height / 100, width: width / 5, marginLeft: 15 , marginTop: 10}}/>
-                    </Loader>
-
-                </View>
+                <ShimmerLoader/>
             )
 
         }else {

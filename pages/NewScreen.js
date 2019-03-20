@@ -3,6 +3,7 @@ import { Text, View, SafeAreaView, FlatList } from 'react-native';
 import axios from 'axios';
 
 import { ListItem } from 'react-native-elements'
+import ShimmerLoader from "../components/ui/ShimmerLoader";
 
 
 export default class NewScreen extends Component {
@@ -11,7 +12,8 @@ export default class NewScreen extends Component {
     };
 
     state = {
-        entries: []
+        entries: [],
+        isFetched: true
     }
 
 
@@ -20,7 +22,7 @@ export default class NewScreen extends Component {
             .then(res => {
                 const ent = res.data.data.children;
                 console.log(ent);
-                this.setState({ entries: ent });
+                this.setState({ entries: ent , isFetched: false});
             });
     }
 
@@ -35,15 +37,23 @@ export default class NewScreen extends Component {
     )
 
     render() {
-        return (
-            <SafeAreaView>
-                <FlatList
-                    keyExtractor={this.keyExtractor}
-                    data={this.state.entries}
-                    renderItem={this.renderItem}
-                />
-            </SafeAreaView>
-        )
+        const {isFetched} = this.state;
+        if (isFetched){
+            return (
+                <ShimmerLoader/>
+            )
+
+        }else {
+            return (
+                <SafeAreaView>
+                    <FlatList
+                        keyExtractor={this.keyExtractor}
+                        data={this.state.entries}
+                        renderItem={this.renderItem}
+                    />
+                </SafeAreaView>
+            )
+        }
     }
 }
 
